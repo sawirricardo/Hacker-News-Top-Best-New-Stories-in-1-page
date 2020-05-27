@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Hacker News Top, Best, New Stories | Sawir Studio</title>
+    <meta
+      name="description"
+      content="Hacker News, but with 3 sections of Top, Best, New Stories"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-135085180-16"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-135085180-16");
+    </script>
+    <style>
+      .button_send {
+        background-color: #ff6600;
+      }
+      .button_send:hover {
+        background-color: #ff2200;
+      }
+      .loader {
+        border-top-color: #ff6600;
+        -webkit-animation: spinner 1.5s linear infinite;
+        animation: spinner 1.5s linear infinite;
+      }
+
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spinner {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="antialiased text-gray-700" style="background-color: #eeeeee;">
+    <header
+      class="py-1 flex justify-between px-6 md:px-8"
+      style="background-color: #ff6600;"
+    >
+      <h1 class="text-gray-900">HackerNews Top, Best, New Stories</h1>
+      <p class="text-gray-900">
+        Built with
+        <a
+          class="border-b border-gray-900 pb-px md:pb-1 text-gray-900"
+          href="https://sawirstudio.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          >SawirStudio</a
+        >. Have any feedback? You can contact me at
+        <a
+          class="border-b border-gray-900 pb-px md:pb-1 text-gray-900"
+          href="mailto:sawir.ricardo@gmail.com"
+          >sawir.ricardo@gmail.com</a
+        >
+      </p>
+    </header>
+    <div class="mx-auto px-6 md:px-8 md:my-2">
+      <div class="px-5">
+        <div class="flex flex-wrap -mx-5">
+          <div class="px-5 w-full md:w-1/3">
+            <h2 class="text-center font-bold mb-1">Top Stories</h2>
+            <form class="mx-auto block text-center" action="" method="get">
+              <input
+                class="shadow appearance-none border rounded w-16 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number"
+                min="1"
+                max="500"
+                name="top"
+                id="input-top"
+              />
+              <button
+                class="button_send text-gray-900 font-bold py-1 px-1 rounded"
+                type="submit"
+              >
+                Send
+              </button>
+            </form>
+            <div class="data">
+              <div
+                class="my-3 loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-20 w-20 block mx-auto"
+                id="loader-top"
+              ></div>
+              <table class="table-auto mt-2 text-xs text-gray-900">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Upvote</th>
+                    <th>Title</th>
+                    <th>Comments</th>
+                  </tr>
+                </thead>
+                <tbody id="top"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="px-5 w-full md:w-1/3">
+            <h2 class="text-center font-bold mb-1">Best Stories</h2>
+            <form class="mx-auto block text-center" action="" method="get">
+              <input
+                class="shadow appearance-none border rounded w-16 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number"
+                min="1"
+                max="200"
+                name="best"
+                id="input-best"
+              />
+              <button
+                class="button_send text-gray-900 font-bold py-1 px-1 rounded"
+                type="submit"
+              >
+                Send
+              </button>
+            </form>
+            <div class="data">
+              <div
+                class="my-3 loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-20 w-20 block mx-auto"
+                id="loader-best"
+              ></div>
+              <table class="table-auto mt-2 text-xs text-gray-900">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Upvote</th>
+                    <th>Title</th>
+                    <th>Comments</th>
+                  </tr>
+                </thead>
+                <tbody id="best"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="px-5 w-full md:w-1/3">
+            <h2 class="text-center font-bold mb-1">New Stories</h2>
+            <form class="mx-auto block text-center" action="" method="get">
+              <input
+                class="shadow appearance-none border rounded w-16 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number"
+                min="1"
+                max="500"
+                name="new"
+                id="input-new"
+              />
+              <button
+                class="button_send text-gray-900 font-bold py-1 px-1 rounded"
+                type="submit"
+              >
+                Send
+              </button>
+            </form>
+            <div class="data">
+              <div
+                class="my-3 loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-20 w-20 block mx-auto"
+                id="loader-new"
+              ></div>
+              <table class="table-auto mt-2 text-xs text-gray-900">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Upvote</th>
+                    <th>Title</th>
+                    <th>Comments</th>
+                  </tr>
+                </thead>
+                <tbody id="new"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="my-5">
+      <p class="text-gray-900 text-center">
+        Built with
+        <a
+          class="border-b border-gray-900 pb-px md:pb-1 text-gray-900"
+          href="https://sawirstudio.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          >SawirStudio</a
+        >. Have any feedback? You can contact me at
+        <a
+          class="border-b border-gray-900 pb-px md:pb-1 text-gray-900"
+          href="mailto:sawir.ricardo@gmail.com"
+          >sawir.ricardo@gmail.com</a
+        >
+      </p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const getParam = (url, param) =>
+        new URLSearchParams(new URL(url).search).get(param);
+
+      let arrTopStories = [];
+      let arrBestStories = [];
+      let arrNewStories = [];
+      window.onload = () => {
+        const intTop = getParam(window.location, "top")
+          ? parseInt(getParam(window.location, "top"))
+          : 30;
+        const intBest = getParam(window.location, "best")
+          ? parseInt(getParam(window.location, "best"))
+          : 30;
+        const intNew = getParam(window.location, "new")
+          ? parseInt(getParam(window.location, "new"))
+          : 30;
+
+        document.getElementById("input-top").value = limitNumberWithinRange(
+          intTop
+        );
+        document.getElementById("input-best").value = limitNumberWithinRange(
+          intBest,
+          1,
+          200
+        );
+        document.getElementById("input-new").value = limitNumberWithinRange(
+          intNew
+        );
+        axios
+          .all([
+            axios.get(`https://hacker-news.firebaseio.com/v0/topstories.json`),
+            axios.get(`https://hacker-news.firebaseio.com/v0/beststories.json`),
+            axios.get(`https://hacker-news.firebaseio.com/v0/newstories.json`),
+          ])
+          .then(
+            axios.spread((...responses) => {
+              responses[0].data.map((intStory) => {
+                arrTopStories.push(
+                  axios.get(
+                    `https://hacker-news.firebaseio.com/v0/item/${intStory}.json`
+                  )
+                );
+              });
+              responses[1].data.map((intStory) => {
+                arrBestStories.push(
+                  axios.get(
+                    `https://hacker-news.firebaseio.com/v0/item/${intStory}.json`
+                  )
+                );
+              });
+              responses[2].data.map((intStory) => {
+                arrNewStories.push(
+                  axios.get(
+                    `https://hacker-news.firebaseio.com/v0/item/${intStory}.json`
+                  )
+                );
+              });
+            })
+          )
+          .then(() => {
+            axios.all(arrTopStories.slice(0, intTop)).then(
+              axios.spread((...resTop) => {
+                document.querySelector("#loader-top").remove();
+                let number = 1;
+                resTop.map(({ data }) => {
+                  if (data) {
+                    let strHnUrl = `https://news.ycombinator.com/item?id=${data.id}`;
+                    let url = data.url ? data.url : strHnUrl;
+                    let kids = data.kids ? data.kids.length : `-`;
+                    document.getElementById("top").innerHTML += `<tr>
+                <td class="border border-orange-700 px-4 py-2">${number}</td>
+                <td class="border border-orange-700 px-4 py-2">${data.score}</td>
+                <td class="border border-orange-700 px-4 py-2"><a class="border-b hover:border-gray-700 border-transparent" href="${url}">${data.title}</a> - <a class="border-b hover:border-gray-700 border-transparent" href="${strHnUrl}">[link]</a></td>
+                <td class="border border-orange-700 px-4 py-2"><a href="${strHnUrl}">${kids}</a></td>
+                </tr>`;
+                  } else {
+                    document.getElementById("top").innerHTML += `<tr>
+                <td class="border border-orange-700 px-4 py-2">${number}</td>
+                <td class="border border-orange-700 px-4 py-2">Deleted</td>
+                <td class="border border-orange-700 px-4 py-2"><a class="border-b hover:border-gray-700 border-transparent" href="#">Deleted</a></td>
+                <td class="border border-orange-700 px-4 py-2"><a href="#">Deleted</a></td>
+                </tr>`;
+                  }
+                  number++;
+                });
+              })
+            );
+          })
+          .then(() => {
+            axios.all(arrBestStories.slice(0, intBest)).then(
+              axios.spread((...resBest) => {
+                document.querySelector("#loader-best").remove();
+                let number = 1;
+                resBest.map(({ data }) => {
+                  if (data) {
+                    let strHnUrl = `https://news.ycombinator.com/item?id=${data.id}`;
+                    let url = data.url ? data.url : strHnUrl;
+                    let kids = data.kids ? data.kids.length : `-`;
+                    document.getElementById("best").innerHTML += `<tr>
+                <td class="border border-orange-700 px-4 py-2">${number}</td>
+                <td class="border border-orange-700 px-4 py-2">${data.score}</td>
+                <td class="border border-orange-700 px-4 py-2"><a class="border-b hover:border-gray-700 border-transparent" href="${url}">${data.title}</a> - <a class="border-b hover:border-gray-700 border-transparent" href="${strHnUrl}">[link]</a></td>
+                <td class="border border-orange-700 px-4 py-2"><a href="${strHnUrl}">${kids}</a></td>
+                </tr>`;
+                  } else {
+                    document.getElementById("best").innerHTML += `<tr>
+                <td class="border border-orange-700 px-4 py-2">${number}</td>
+                <td class="border border-orange-700 px-4 py-2">Deleted</td>
+                <td class="border border-orange-700 px-4 py-2"><a class="border-b hover:border-gray-700 border-transparent" href="#">Deleted</a></td>
+                <td class="border border-orange-700 px-4 py-2"><a href="#">Deleted</a></td>
+                </tr>`;
+                  }
+                  number++;
+                });
+              })
+            );
+          })
+          .then(() => {
+            axios.all(arrNewStories.slice(0, intNew)).then(
+              axios.spread((...resNew) => {
+                document.querySelector("#loader-new").remove();
+                let number = 1;
+
+                resNew.map(({ data }) => {
+                  if (data) {
+                    let strHnUrl = `https://news.ycombinator.com/item?id=${data.id}`;
+                    let url = data.url ? data.url : strHnUrl;
+                    let kids = data.kids ? data.kids.length : `-`;
+                    document.getElementById("new").innerHTML += `<tr>
+                <td class="border border-orange-700 px-4 py-2">${number}</td>
+                <td class="border border-orange-700 px-4 py-2">${data.score}</td>
+                <td class="border border-orange-700 px-4 py-2"><a class="border-b hover:border-gray-700 border-transparent" href="${url}">${data.title}</a> - <a class="border-b hover:border-gray-700 border-transparent" href="${strHnUrl}">[link]</a></td>
+                <td class="border border-orange-700 px-4 py-2"><a href="${strHnUrl}">${kids}</a></td>
+                </tr>`;
+                  } else {
+                    document.getElementById("new").innerHTML += `<tr>
+                <td class="border border-orange-700 px-4 py-2">${number}</td>
+                <td class="border border-orange-700 px-4 py-2">Deleted</td>
+                <td class="border border-orange-700 px-4 py-2"><a class="border-b hover:border-gray-700 border-transparent" href="#">Deleted</a></td>
+                <td class="border border-orange-700 px-4 py-2"><a href="#">Deleted</a></td>
+                </tr>`;
+                  }
+
+                  number++;
+                });
+              })
+            );
+          });
+      };
+      function limitNumberWithinRange(num, min, max) {
+        const MIN = min || 1;
+        const MAX = max || 500;
+        const parsed = parseInt(num);
+        return Math.min(Math.max(parsed, MIN), MAX);
+      }
+    </script>
+  </body>
+</html>
