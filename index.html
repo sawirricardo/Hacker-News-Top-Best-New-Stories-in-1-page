@@ -97,12 +97,15 @@
                 max="500"
                 name="top"
                 id="input-top"
+                oninput="showHiddenButton('input-top')"
+                onchange="showHiddenButton('input-top')"
               />
               <button
-                class="button_send text-gray-900 font-bold py-1 px-2 rounded"
+                class="button_send text-gray-900 font-bold py-1 px-2 rounded hidden"
+                id="button-top"
                 type="submit"
               >
-                Show
+                Update
               </button>
             </form>
             <div class="data">
@@ -133,12 +136,15 @@
                 max="200"
                 name="best"
                 id="input-best"
+                oninput="showHiddenButton('input-best')"
+                onchange="showHiddenButton('input-best')"
               />
               <button
-                class="button_send text-gray-900 font-bold py-1 px-2 rounded"
+                class="button_send text-gray-900 font-bold py-1 px-2 rounded hidden"
+                id="button-best"
                 type="submit"
               >
-                Show
+                Update
               </button>
             </form>
             <div class="data">
@@ -169,12 +175,15 @@
                 max="500"
                 name="new"
                 id="input-new"
+                oninput="showHiddenButton('input-new')"
+                onchange="showHiddenButton('input-new')"
               />
               <button
-                class="button_send text-gray-900 font-bold py-1 px-2 rounded"
+                class="button_send text-gray-900 font-bold py-1 px-2 rounded hidden"
+                id="button-new"
                 type="submit"
               >
-                Show
+                Update
               </button>
             </form>
             <div class="data">
@@ -371,6 +380,11 @@
         const MAX = max || 500;
         const parsed = parseInt(num);
         return Math.min(Math.max(parsed, MIN), MAX);
+      }
+      function showHiddenButton(strElementId) {
+        const current = document.getElementById(strElementId);
+        const nextSibling = current.nextElementSibling;
+        nextSibling.classList.remove("hidden");
       }
     </script>
   </body>
